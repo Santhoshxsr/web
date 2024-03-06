@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <script>
+        function validate() {
+            var error = 0;
+
+            if (document.myForm.Name.value == "") {
+                alert("Please provide your name!");
+                error = 1;
+                return false;
+            }
+
+            if (document.myForm.EMail.value == "") {
+                alert("Email must be filled out");
+                error = 1;
+                return false;
+            }
+
+            var email_test = new RegExp("^(\\w*)@(\\w*).(\\w*)$");
+            if (!email_test.test(document.myForm.EMail.value)) {
+                alert(document.myForm.EMail.value + " is not a valid email address.");
+                error = 1;
+                return false;
+            }
+
+            if (document.myForm.Password.value == "") {
+                alert("Password must be filled out");
+                error = 1;
+                return false;
+            }
+
+            // Validate password length (minimum 8 characters)
+            if (document.myForm.Password.value.length < 8) {
+                alert("Password must be at least 8 characters long");
+                error = 1;
+                return false;
+            }
+
+            // Validate password complexity (e.g., containing at least one digit and one special character)
+            var password_test = /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-zA-Z]).{8,}$/;
+            if (!password_test.test(document.myForm.Password.value)) {
+                alert("Password must contain at least one digit, one special character, and one letter");
+                error = 1;
+                return false;
+            }
+
+            if (document.myForm.DOB.value == "") {
+                alert("Date of Birth must be filled out");
+                error = 1;
+                return false;
+            }
+
+            if (document.myForm.Phone.value == "") {
+                alert("Phone Number must be filled out");
+                error = 1;
+                return false;
+            }
+
+            var phone_test = new RegExp("^[0-9]{10}$");
+            if (!phone_test.test(document.myForm.Phone.value)) {
+                alert("Phone Number must be 10 digits");
+                error = 1;
+                return false;
+            }
+
+            if (error == 0) {
+                alert("The Name is " + document.myForm.Name.value + "\n" +
+                    "The E-Mail is " + document.myForm.EMail.value + "\n" +
+                    "The Password is " + document.myForm.Password.value + "\n" +
+                    "The Date of Birth is " + document.myForm.DOB.value + "\n" +
+                    "The Phone Number is " + document.myForm.Phone.value + "\n");
+            }
+
+            return true;
+        }
+    </script>
+</head>
+
+<body>
+
+    <form name="myForm" onsubmit="return validate()">
+
+        <table cellspacing="2" cellpadding="2" border="1">
+
+            <tr>
+
+                <td align="right">Name</td>
+
+                <td><input type="text" name="Name" /></td>
+
+            </tr>
+
+            <tr>
+
+                <td align="right">EMail</td>
+
+                <td><input type="text" name="EMail" /></td>
+
+            </tr>
+
+            <tr>
+
+                <td align="right">Password</td>
+
+                <td><input type="password" name="Password" /></td>
+
+            </tr>
+
+            <tr>
+
+                <td align="right">Date of Birth</td>
+
+                <td><input type="date" name="DOB" /></td>
+
+            </tr>
+
+            <tr>
+
+                <td align="right">Phone Number</td>
+
+                <td><input type="tel" name="Phone" /></td>
+
+            </tr>
+
+            <tr>
+
+                <td align="right"></td>
+
+                <td><input type="submit" value="Submit" /></td>
+
+            </tr>
+
+        </table>
+    </form>
+</body>
+
+</html>
